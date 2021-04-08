@@ -6,16 +6,22 @@
 h1 {
 	font-family: brush script mt;
 }
+h2 {
+	font-size: 110%;
+}
 #giovannisierchiothumbnail {
 	width: 10%;
 }
-portfolio_bar {
-	padding: 2%;
+#portfolioBar {
+	padding: 1%;
 	font-family: arial narrow;
+	font-size: 100%;
 	}
-contact_me_bar {
-	padding: 2%;
+#contactBar {
+	padding: 1%;
 	font-family: arial narrow;
+	font-size: 100%;
+	color: grey;
 }
 a:link, a:visited {
 	color: grey;
@@ -25,21 +31,141 @@ a:link, a:visited {
 a:hover {
 	text-decoration: underline overline;
 }
+button {
+	border: none;
+	background-color: white;
+}
+#contactForm {
+	padding-bottom: 5%;
+	padding-top:5%;
+}
+#footer {
+	padding-bottom:0%;
+}
+#portfolio {
+	width: 70%;
+	height: 100%;
+	border: 1px solid black;
+	border-bottom: none;
+}
+#portfolioContent {
+	width: 70%;
+	height: 100%;
+	border: 1px solid black;
+	border-top: none;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 10px;
+  height: 70%;
+}
 </style>
 </head>
 <body>
 <center>
 <img id="giovannisierchiothumbnail"src="https://raw.githubusercontent.com/giovannisierchio/giovannisierchio.github.io/main/Giovanni%20Sierchio.png"></img>
-<h1> Giovanni Sierchio</h1>
+<h1> Giovanni Sierchio </h1>
 <section>
-<portfolio_bar>
-> Portfolio | Portffolio <
-</portfolio_bar>
-<contact_me_bar><a href="contact_me_page.html">
-Contact Me | Fy Nghysylltwch fi</a>
-</contact_me_bar>
+<button id ="portfolioBar" onclick="portfolioButton=true;">
+> Portfolio | Portffolio < </button>
+<button id="contactBar" onclick="contactButton=true;">
+Contact Me | Fy Nghysylltwch Fi</button>
 </section>
-<p> Copyright © 2021 Giovanni Sierchio <p>
+<br>
+<div id="contactForm">
+	<p>Hi, feel free to get in touch with me through my email below or through my Instagram...</p>
+	<p>Hei, teimlwch yn rhydd i'm nghysylltu trwy fy Instagram...</p>
+	<p><a href="https://instagram.com/giovanni.sierchio">Instagram:	giovanni.sierchio</a></p>
+</div>
+<div id = "portfolio" class="row">
+	<div class="column">
+		<h2>Animation | Animeiddiadau </h2>
+	</div>
+	<div class="column">
+		<h2> Digital Design | Darlun Digidol </h2>
+	</div>
+	<div class="column">
+		<h2> Coding Projects | Prosiectau Codio </h2>
+	</div>
+</div>
+<div id = "portfolioContent" class="row">
+	<div class="column">
+		<p> I shall be uploading work here soon | Bydda i'n uwchlwytho waith i fan yma'n fuan </p>
+	</div>
+	<div class="column">
+		<p> I shall be uploading work here soon | Bydda i'n uwchlwytho waith i fan yma'n fuan </p>
+	</div>
+	<div class="column">
+		<p> I shall be uploading work here soon | Bydda i'n uwchlwytho waith i fan yma'n fuan </p>
+	</div>
+</div>
+<br>
+<footer id="footer"> Copyright © 2021 Giovanni Sierchio <footer>
 </center>
+<script>
+var contactButton = false;
+var portfolioButton = false;
+var siteState = "portfolio";
+
+document.getElementById("portfolioBar").addEventListener("mouseover", portfolioMouseOver);
+document.getElementById("portfolioBar").addEventListener("mouseout", portfolioMouseOut);
+document.getElementById("contactBar").addEventListener("mouseover", contactMouseOver);
+document.getElementById("contactBar").addEventListener("mouseout", contactMouseOut);
+
+document.getElementById("contactForm").style.display = "none";
+
+function portfolioMouseOver(){
+	if(siteState == "contact"){
+		document.getElementById('portfolioBar').innerHTML = "> Portfolio | Portffolio <";
+	}
+}
+
+function portfolioMouseOut(){
+	if(siteState == "contact"){
+		document.getElementById('portfolioBar').innerHTML = "Portfolio | Portffolio";
+	}
+}
+
+function contactMouseOver(){
+	if(siteState == "portfolio"){
+		document.getElementById('contactBar').innerHTML = "> Contact Me | Fy Nghysylltwch Fi <";
+	}
+}
+
+function contactMouseOut(){
+	if(siteState == "portfolio"){
+		document.getElementById('contactBar').innerHTML = "Contact Me | Fy Nghysylltwch Fi";
+	}
+}
+
+function loop(){
+	if(contactButton==true){
+		document.getElementById('portfolio').style.display = "none";
+		document.getElementById('portfolioContent').style.display = "none";
+		document.getElementById('contactForm').style.display = "block";
+		document.getElementById('portfolioBar').innerHTML = "Portfolio | Portffolio";
+		document.getElementById('portfolioBar').style.color = "grey";
+		document.getElementById('contactBar').style.color = "black";
+		siteState = "contact";
+		contactButton = false;
+	}
+	if(portfolioButton == true){
+		document.getElementById('contactForm').style.display = "none";
+		document.getElementById('portfolio').style.display = "flex";
+		document.getElementById('portfolioContent').style.display = "flex";
+		document.getElementById('contactBar').innerHTML = "Contact Me | Fy Nghysylltwch Fi";
+		document.getElementById('portfolioBar').style.color = "black";
+		document.getElementById('contactBar').style.color = "grey";
+		siteState = "portfolio";
+		portfolioButton = false;
+	}
+}
+
+setInterval(loop, 2);
+</script>
 </body>
 </html>
